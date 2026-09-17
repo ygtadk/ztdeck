@@ -1,0 +1,16 @@
+# Build output
+builddir/
+build/
+.flatpak-build/
+.flatpak-builder/
+repo/
+*.flatpak
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Editors
+.vscode/
+.idea/
+*.swp

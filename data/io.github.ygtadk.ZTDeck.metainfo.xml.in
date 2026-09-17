@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>@APP_ID@</id>
+
+  <name>ZTDeck</name>
+  <summary>Manage ZeroTier networks</summary>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+
+  <description>
+    <p>
+      ZTDeck is a small desktop client for the ZeroTier One service running on
+      your machine. It talks to the local ZeroTier control API, so the daemon
+      keeps doing the networking while ZTDeck gives you a clear view of it.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>See your node address, version and online state at a glance</li>
+      <li>Join and leave networks, with network ID validation</li>
+      <li>Copy managed IP addresses to the clipboard</li>
+      <li>Toggle managed addresses, global routes, default route and DNS per network</li>
+      <li>Inspect peers with their link type and latency</li>
+    </ul>
+    <p>
+      ZTDeck does not bundle the ZeroTier service. Install and start
+      zerotier-one on the host first, then grant your user account read access
+      to the service token as described in the setup screen.
+    </p>
+    <p>
+      This is an unofficial client. It is not affiliated with, endorsed by, or
+      sponsored by ZeroTier, Inc.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">@APP_ID@.desktop</launchable>
+
+  <url type="homepage">https://github.com/ygtadk/ztdeck</url>
+  <url type="bugtracker">https://github.com/ygtadk/ztdeck/issues</url>
+  <url type="vcs-browser">https://github.com/ygtadk/ztdeck</url>
+
+  <developer id="io.github.ygtadk">
+    <name>Yiğit Adak</name>
+  </developer>
+
+  <content_rating type="oars-1.1" />
+
+  <branding>
+    <color type="primary" scheme_preference="light">#99c1f1</color>
+    <color type="primary" scheme_preference="dark">#1a5fb4</color>
+  </branding>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Joined networks with their managed addresses</caption>
+      <image>https://raw.githubusercontent.com/ygtadk/ztdeck/main/data/screenshots/networks.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Peers with link type and latency</caption>
+      <image>https://raw.githubusercontent.com/ygtadk/ztdeck/main/data/screenshots/peers.png</image>
+    </screenshot>
+  </screenshots>
+
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+
+  <releases>
+    <release version="0.1.0" date="2026-09-17">
+      <description>
+        <p>First release of ZTDeck.</p>
+      </description>
+    </release>
+  </releases>
+</component>

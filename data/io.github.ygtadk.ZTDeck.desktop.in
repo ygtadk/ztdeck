@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=ZTDeck
+GenericName=ZeroTier Client
+Comment=Manage ZeroTier networks on this machine
+Exec=ztdeck
+Icon=@APP_ID@
+Terminal=false
+Type=Application
+Categories=Network;GTK;
+Keywords=ZeroTier;VPN;Network;Mesh;Overlay;SDN;
+StartupNotify=true

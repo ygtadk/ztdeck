@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#62a0ea"/>
+      <stop offset="1" stop-color="#1a5fb4"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#deddda" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="8" y="8" width="112" height="112" rx="26" fill="url(#bg)"/>
+  <rect x="8" y="8" width="112" height="112" rx="26" fill="none" stroke="#1c4f91" stroke-opacity="0.5" stroke-width="2"/>
+
+  <!-- stacked cards: the "deck" -->
+  <rect x="34" y="26" width="60" height="34" rx="8" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="28" y="34" width="72" height="40" rx="9" fill="url(#card)"/>
+
+  <!-- mesh links drawn on the front card -->
+  <g stroke="#1a5fb4" stroke-width="3.5" stroke-linecap="round">
+    <line x1="44" y1="62" x2="64" y2="46"/>
+    <line x1="64" y1="46" x2="84" y2="62"/>
+    <line x1="44" y1="62" x2="84" y2="62"/>
+  </g>
+  <g fill="#1a5fb4">
+    <circle cx="64" cy="46" r="7"/>
+    <circle cx="44" cy="62" r="7"/>
+    <circle cx="84" cy="62" r="7"/>
+  </g>
+
+  <!-- connection arc underneath, suggesting the overlay link -->
+  <path d="M 34 92 Q 64 112 94 92" fill="none" stroke="#ffffff" stroke-opacity="0.85"
+        stroke-width="6" stroke-linecap="round"/>
+  <circle cx="34" cy="92" r="6" fill="#ffffff"/>
+  <circle cx="94" cy="92" r="6" fill="#ffffff"/>
+</svg>
