@@ -80,9 +80,17 @@
   </supports>
 
   <releases>
-    <release version="0.1.0" date="2026-09-17">
+    <release version="0.1.0" date="2026-09-18">
       <description>
         <p>First release of ZTDeck.</p>
+        <ul>
+          <li>Join, leave and inspect ZeroTier networks</li>
+          <li>Routes and DNS published by the network controller</li>
+          <li>Peers with link type and latency</li>
+          <li>A Device page with the node identity and connection health</li>
+          <li>Notifications when a network connects or stops responding</li>
+          <li>Available in English and Turkish</li>
+        </ul>
       </description>
     </release>
   </releases>
