@@ -31,4 +31,4 @@ modules:
       - type: git
         url: https://github.com/ygtadk/ztdeck.git
         tag: v0.1.0
-        commit: REPLACE_WITH_TAG_COMMIT_SHA
+        commit: 6c932c892de964e3ddeccc70c8c98678e6fe7835
