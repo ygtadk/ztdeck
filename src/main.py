@@ -9,6 +9,7 @@ gi.require_version("Adw", "1")
 
 from gi.repository import Adw, Gio, GLib, Gtk  # noqa: E402
 
+from .i18n import _  # noqa: E402
 from .window import ZTDeckWindow  # noqa: E402
 
 
@@ -55,13 +56,15 @@ class ZTDeckApplication(Adw.Application):
             website="https://github.com/ygtadk/ztdeck",
             issue_url="https://github.com/ygtadk/ztdeck/issues",
             license_type=Gtk.License.MIT_X11,
-            comments=(
+            comments=_(
                 "An unofficial desktop client for the ZeroTier One service.\n\n"
                 "ZTDeck talks to the ZeroTier daemon already running on this "
                 "machine through its local control API. It is not affiliated "
                 "with or endorsed by ZeroTier, Inc."
             ),
         )
+        # Translators: credit yourself here; it shows in the About dialog.
+        about.set_translator_credits(_("translator-credits"))
         about.present(self.props.active_window)
 
 

@@ -1,0 +1,11 @@
+data/io.github.ygtadk.ZTDeck.desktop.in.in
+data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in
+src/client.py
+src/device.py
+src/main.py
+src/networks.py
+src/notifications.py
+src/peers.py
+src/setup_view.py
+src/util.py
+src/window.py

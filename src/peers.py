@@ -6,19 +6,26 @@ flicker or jump while the user is scrolling it.
 
 from gi.repository import Adw, Gtk
 
+from .i18n import _
 from .util import format_latency
 
-ROLE_LABELS = {
-    "LEAF": "Peer",
-    "PLANET": "Root server",
-    "MOON": "Moon",
-    "UPSTREAM": "Upstream",
-}
+
+def _role_label(role):
+    """Human wording for a peer's role in the network."""
+    known = {
+        "LEAF": _("Peer"),
+        "PLANET": _("Root server"),
+        "MOON": _("Moon"),
+        "UPSTREAM": _("Upstream"),
+    }
+    if role in known:
+        return known[role]
+    return role or _("Peer")
 
 
 def _describe(peer):
     """Return ``(subtitle, endpoint, direct)`` for one peer payload."""
-    role = ROLE_LABELS.get(peer.get("role"), peer.get("role") or "Peer")
+    role = _role_label(peer.get("role"))
 
     version = peer.get("version") or ""
     if version.startswith("-1"):
@@ -27,9 +34,14 @@ def _describe(peer):
     paths = [path for path in (peer.get("paths") or []) if path.get("active")]
     direct = bool(paths)
 
-    parts = [role, "Direct" if direct else "Relayed", format_latency(peer.get("latency"))]
+    parts = [
+        role,
+        _("Direct") if direct else _("Relayed"),
+        format_latency(peer.get("latency")),
+    ]
     if version:
-        parts.append(f"v{version}")
+        # Translators: %s is a version number, e.g. "1.14.2".
+        parts.append(_("v%s") % version)
 
     endpoint = paths[0].get("address", "") if paths else ""
     return "  ·  ".join(parts), endpoint, direct
@@ -76,8 +88,8 @@ class PeersPage(Adw.Bin):
 
         self._empty = Adw.StatusPage(
             icon_name="network-transmit-receive-symbolic",
-            title="No peers yet",
-            description=(
+            title=_("No peers yet"),
+            description=_(
                 "Once this node exchanges traffic with other members they "
                 "appear here with their connection quality."
             ),

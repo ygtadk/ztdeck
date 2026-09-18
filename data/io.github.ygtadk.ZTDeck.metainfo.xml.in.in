@@ -19,8 +19,11 @@
       <li>See your node address, version and online state at a glance</li>
       <li>Join and leave networks, with network ID validation</li>
       <li>Copy managed IP addresses to the clipboard</li>
+      <li>Inspect the routes and DNS settings a controller publishes</li>
       <li>Toggle managed addresses, global routes, default route and DNS per network</li>
       <li>Inspect peers with their link type and latency</li>
+      <li>Get notified when a network connects or stops responding</li>
+      <li>See when traffic falls back to slow TCP relaying</li>
     </ul>
     <p>
       ZTDeck does not bundle the ZeroTier service. Install and start
@@ -38,6 +41,7 @@
   <url type="homepage">https://github.com/ygtadk/ztdeck</url>
   <url type="bugtracker">https://github.com/ygtadk/ztdeck/issues</url>
   <url type="vcs-browser">https://github.com/ygtadk/ztdeck</url>
+  <url type="translate">https://github.com/ygtadk/ztdeck/tree/main/po</url>
 
   <developer id="io.github.ygtadk">
     <name>Yiğit Adak</name>
@@ -46,8 +50,8 @@
   <content_rating type="oars-1.1" />
 
   <branding>
-    <color type="primary" scheme_preference="light">#99c1f1</color>
-    <color type="primary" scheme_preference="dark">#1a5fb4</color>
+    <color type="primary" scheme_preference="light">#ffb25b</color>
+    <color type="primary" scheme_preference="dark">#a16521</color>
   </branding>
 
   <screenshots>
@@ -58,6 +62,10 @@
     <screenshot>
       <caption>Peers with link type and latency</caption>
       <image>https://raw.githubusercontent.com/ygtadk/ztdeck/main/data/screenshots/peers.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Node identity and connection health</caption>
+      <image>https://raw.githubusercontent.com/ygtadk/ztdeck/main/data/screenshots/device.png</image>
     </screenshot>
   </screenshots>
 

@@ -1,10 +1,20 @@
 desktop_conf = configuration_data()
 desktop_conf.set('APP_ID', application_id)
 
-desktop_file = configure_file(
-  input: 'io.github.ygtadk.ZTDeck.desktop.in',
-  output: application_id + '.desktop',
+# Two stages: configure_file substitutes @APP_ID@, then i18n.merge_file folds
+# in the translations from po/. Meson's i18n module only accepts a plain .in
+# file as input, hence the .in.in sources.
+desktop_in = configure_file(
+  input: 'io.github.ygtadk.ZTDeck.desktop.in.in',
+  output: application_id + '.desktop.in',
   configuration: desktop_conf,
+)
+
+desktop_file = i18n.merge_file(
+  input: desktop_in,
+  output: application_id + '.desktop',
+  type: 'desktop',
+  po_dir: meson.project_source_root() / 'po',
   install: true,
   install_dir: datadir / 'applications',
 )
@@ -14,10 +24,17 @@ if desktop_utils.found()
   test('Validate desktop file', desktop_utils, args: [desktop_file])
 endif
 
-metainfo_file = configure_file(
-  input: 'io.github.ygtadk.ZTDeck.metainfo.xml.in',
-  output: application_id + '.metainfo.xml',
+metainfo_in = configure_file(
+  input: 'io.github.ygtadk.ZTDeck.metainfo.xml.in.in',
+  output: application_id + '.metainfo.xml.in',
   configuration: desktop_conf,
+)
+
+metainfo_file = i18n.merge_file(
+  input: metainfo_in,
+  output: application_id + '.metainfo.xml',
+  type: 'xml',
+  po_dir: meson.project_source_root() / 'po',
   install: true,
   install_dir: datadir / 'metainfo',
 )

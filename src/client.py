@@ -15,6 +15,8 @@ from pathlib import Path
 
 from gi.repository import GLib
 
+from .i18n import _
+
 DEFAULT_PORT = 9993
 REQUEST_TIMEOUT = 5.0
 
@@ -33,36 +35,36 @@ TOKEN_SEARCH_PATHS = (APP_TOKEN_PATH, USER_TOKEN_PATH, SYSTEM_TOKEN_PATH)
 class ZeroTierError(Exception):
     """Base class for every failure ZTDeck knows how to explain."""
 
-    title = "Something went wrong"
+    title = _("Something went wrong")
     hint = ""
 
 
 class TokenMissingError(ZeroTierError):
-    title = "Authentication token not found"
-    hint = (
+    title = _("Authentication token not found")
+    hint = _(
         "ZTDeck needs a readable copy of the ZeroTier service token before it "
         "can talk to the daemon."
     )
 
 
 class DaemonUnreachableError(ZeroTierError):
-    title = "ZeroTier service is not running"
-    hint = (
+    title = _("ZeroTier service is not running")
+    hint = _(
         "Nothing is listening on the local ZeroTier control port. Start the "
         "service with: sudo systemctl enable --now zerotier-one"
     )
 
 
 class AuthFailedError(ZeroTierError):
-    title = "Authentication token was rejected"
-    hint = (
+    title = _("Authentication token was rejected")
+    hint = _(
         "The token ZTDeck found is no longer valid. Copy the current token "
         "again, then reload."
     )
 
 
 class ApiError(ZeroTierError):
-    title = "The ZeroTier service returned an error"
+    title = _("The ZeroTier service returned an error")
 
 
 def read_token():
@@ -161,7 +163,7 @@ class ZeroTierClient:
         try:
             return json.loads(raw)
         except json.JSONDecodeError as exc:
-            raise ApiError("The service sent a malformed response") from exc
+            raise ApiError(_("The service sent a malformed response")) from exc
 
     # -- read -------------------------------------------------------------
 

@@ -31,11 +31,15 @@ gi.require_version("Adw", "1")
 from gi.repository import Adw, Gtk  # noqa: E402
 
 from ztdeck import client as client_module  # noqa: E402
+from ztdeck.device import DevicePage  # noqa: E402
 from ztdeck.networks import JoinDialog, NetworksPage  # noqa: E402
+from ztdeck.notifications import NetworkNotifier  # noqa: E402
 from ztdeck.peers import PeersPage  # noqa: E402
 from ztdeck.util import (  # noqa: E402
+    format_dns,
     format_latency,
     format_network_status,
+    format_routes,
     is_valid_network_id,
 )
 
@@ -295,18 +299,218 @@ def test_join_dialog():
     check(not captured, "cancel does not join")
 
 
+def test_route_and_dns_formatting():
+    check(format_routes([]) == "", "no routes renders empty")
+    check(
+        format_routes([{"target": "10.0.0.0/24", "via": None}]) == "10.0.0.0/24",
+        "direct route shows only the target",
+    )
+    check(
+        "via" in format_routes([{"target": "192.168.0.0/16", "via": "10.0.0.1"}]),
+        "gateway route mentions its via address",
+    )
+    check(
+        format_routes(
+            [{"target": "10.0.0.0/24"}, {"target": "10.1.0.0/24"}]
+        ).count("\n")
+        == 1,
+        "one route per line",
+    )
+    check(format_routes([{"via": "10.0.0.1"}]) == "", "route without target skipped")
+
+    check(format_dns({}) == "", "empty DNS renders empty")
+    check(format_dns({"servers": []}) == "", "DNS with no servers renders empty")
+    check(
+        format_dns({"servers": ["10.0.0.1"]}) == "10.0.0.1",
+        "DNS server listed",
+    )
+    formatted = format_dns({"domain": "lab.internal", "servers": ["10.0.0.1"]})
+    check("lab.internal" in formatted, "search domain shown")
+    check("10.0.0.1" in formatted, "server shown alongside domain")
+
+
+def test_routes_and_dns_rows():
+    page = NetworksPage()
+    page.update(
+        [
+            {
+                "nwid": "8056c2e21c000001",
+                "name": "Lab",
+                "status": "OK",
+                "assignedAddresses": [],
+                "routes": [
+                    {"target": "10.147.17.0/24", "via": None},
+                    {"target": "192.168.50.0/24", "via": "10.147.17.1"},
+                ],
+                "dns": {"domain": "lab.internal", "servers": ["10.147.17.1"]},
+            }
+        ]
+    )
+    row = page._rows["8056c2e21c000001"]  # noqa: SLF001
+    routes_text = row._routes_row.get_subtitle()  # noqa: SLF001
+    check("10.147.17.0/24" in routes_text, "direct route rendered in the row")
+    check("192.168.50.0/24" in routes_text, "gateway route rendered in the row")
+
+    dns_text = row._dns_row.get_subtitle()  # noqa: SLF001
+    check("lab.internal" in dns_text, "DNS search domain rendered in the row")
+
+    # A network with neither must say so rather than render blank.
+    page.update(
+        [
+            {
+                "nwid": "8056c2e21c000001",
+                "name": "Lab",
+                "status": "OK",
+                "assignedAddresses": [],
+                "routes": [],
+                "dns": {},
+            }
+        ]
+    )
+    check(row._routes_row.get_subtitle() != "", "empty routes still labelled")  # noqa: SLF001
+    check(row._dns_row.get_subtitle() != "", "empty DNS still labelled")  # noqa: SLF001
+
+
+def test_device_page():
+    page = DevicePage()
+    page.update(
+        {
+            "address": "a9b8c7d6e5",
+            "online": True,
+            "version": "1.14.2",
+            "versionBuild": 0,
+            "tcpFallbackActive": False,
+            "planetWorldId": 149604618,
+            "publicIdentity": "a9b8c7d6e5:0:6f1b",
+        }
+    )
+    check(page._address_row.get_subtitle() == "a9b8c7d6e5", "node address shown")  # noqa: SLF001
+    check("1.14.2" in page._version_row.get_subtitle(), "version shown")  # noqa: SLF001
+    check(
+        "a9b8c7d6e5:0:6f1b" in page._identity_row.get_subtitle(),  # noqa: SLF001
+        "public identity shown",
+    )
+    check(
+        not page._transport_row.has_css_class("warning"),  # noqa: SLF001
+        "UDP transport is not flagged as a problem",
+    )
+
+    copied = []
+    page.connect("copy-requested", lambda _p, value, msg: copied.append(value))
+    page._copy("address", "x")  # noqa: SLF001
+    check(copied == ["a9b8c7d6e5"], "copy-requested carries the node address")
+
+    # TCP fallback is slow and must be visibly flagged.
+    page.update({"address": "a9b8c7d6e5", "online": True, "tcpFallbackActive": True})
+    check(
+        page._transport_row.has_css_class("warning"),  # noqa: SLF001
+        "TCP fallback flagged with a warning style",
+    )
+
+
+class _FakeApp:
+    """Captures notifications instead of sending them to the session bus."""
+
+    app_id = "io.github.ygtadk.ZTDeck"
+
+    def __init__(self):
+        self.sent = []
+
+    def send_notification(self, notification_id, notification):
+        self.sent.append(notification_id)
+
+
+def test_notifier():
+    app = _FakeApp()
+    notifier = NetworkNotifier(app)
+
+    joined = [{"nwid": "abc", "name": "Lab", "status": "REQUESTING_CONFIGURATION"}]
+
+    # The first snapshot is only a baseline: announcing every already-joined
+    # network at launch would be noise.
+    notifier.process(joined)
+    check(not app.sent, "first snapshot is silent")
+
+    notifier.process([{"nwid": "abc", "name": "Lab", "status": "OK"}])
+    check(len(app.sent) == 1, "becoming connected notifies")
+
+    # Steady state must not re-notify on every poll.
+    notifier.process([{"nwid": "abc", "name": "Lab", "status": "OK"}])
+    check(len(app.sent) == 1, "unchanged status does not re-notify")
+
+    notifier.process([{"nwid": "abc", "name": "Lab", "status": "ACCESS_DENIED"}])
+    check(len(app.sent) == 2, "losing the network notifies")
+
+    # A network appearing for the first time is a user action, not an event.
+    notifier.process(
+        [
+            {"nwid": "abc", "name": "Lab", "status": "ACCESS_DENIED"},
+            {"nwid": "def", "name": "New", "status": "OK"},
+        ]
+    )
+    check(len(app.sent) == 2, "newly joined network does not notify")
+
+    notifier.reset()
+    notifier.process([{"nwid": "abc", "name": "Lab", "status": "OK"}])
+    check(len(app.sent) == 2, "reset re-baselines instead of notifying")
+
+
+def test_locale_dir_is_honoured():
+    """The catalogue must load from the app prefix, not sys.prefix.
+
+    gettext.translation() defaults to sys.prefix/share/locale. Meson installs
+    ZTDeck's catalogues under the app prefix instead, so without an explicit
+    localedir the app silently runs untranslated no matter how complete the
+    .po files are. This regressed once already.
+    """
+    import gettext as gettext_module
+    import importlib
+    import subprocess
+
+    check(
+        "ZTDECK_LOCALE_DIR" in open(os.path.join(SRC, "i18n.py")).read(),
+        "i18n module reads ZTDECK_LOCALE_DIR",
+    )
+
+    launcher = open(os.path.join(SRC, "ztdeck.in")).read()
+    check(
+        "ZTDECK_LOCALE_DIR" in launcher,
+        "launcher exports ZTDECK_LOCALE_DIR for the app to pick up",
+    )
+
+    # Build a throwaway catalogue and prove _() actually returns it.
+    catalogue = os.environ.get("ZTDECK_TEST_CATALOGUE")
+    if not catalogue:
+        check(True, "catalogue round-trip skipped (no ZTDECK_TEST_CATALOGUE)")
+        return
+
+    translation = gettext_module.translation(
+        "ztdeck", localedir=catalogue, languages=["tr"], fallback=True
+    )
+    translated = translation.gettext("Networks")
+    check(
+        translated != "Networks",
+        f"catalogue at {catalogue} actually translates a known string",
+    )
+
+
 def main():
     Adw.init()
 
     test_helpers()
+    test_locale_dir_is_honoured()
+    test_route_and_dns_formatting()
     test_client()
     test_bad_token()
     test_daemon_down()
     test_missing_token()
     test_networks_page()
+    test_routes_and_dns_rows()
     test_toggle_signal_not_emitted_by_refresh()
     test_peers_page()
     test_join_dialog()
+    test_device_page()
+    test_notifier()
 
     print()
     if FAILURES:

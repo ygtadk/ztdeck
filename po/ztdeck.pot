@@ -1,0 +1,699 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the ztdeck package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ztdeck\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-17 17:39+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/io.github.ygtadk.ZTDeck.desktop.in.in:2
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:5
+msgid "ZTDeck"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.desktop.in.in:3
+msgid "ZeroTier Client"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.desktop.in.in:4
+msgid "Manage ZeroTier networks on this machine"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.desktop.in.in:10
+msgid "ZeroTier;VPN;Network;Mesh;Overlay;SDN;"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:6
+msgid "Manage ZeroTier networks"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:12
+msgid ""
+"ZTDeck is a small desktop client for the ZeroTier One service running on "
+"your machine. It talks to the local ZeroTier control API, so the daemon "
+"keeps doing the networking while ZTDeck gives you a clear view of it."
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:17
+msgid "Features:"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:19
+msgid "See your node address, version and online state at a glance"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:20
+msgid "Join and leave networks, with network ID validation"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:21
+msgid "Copy managed IP addresses to the clipboard"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:22
+msgid "Inspect the routes and DNS settings a controller publishes"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:23
+msgid ""
+"Toggle managed addresses, global routes, default route and DNS per network"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:24
+msgid "Inspect peers with their link type and latency"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:25
+msgid "Get notified when a network connects or stops responding"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:26
+msgid "See when traffic falls back to slow TCP relaying"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:28
+msgid ""
+"ZTDeck does not bundle the ZeroTier service. Install and start zerotier-one "
+"on the host first, then grant your user account read access to the service "
+"token as described in the setup screen."
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:33
+msgid ""
+"This is an unofficial client. It is not affiliated with, endorsed by, or "
+"sponsored by ZeroTier, Inc."
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:47
+msgid "Yiğit Adak"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:59
+msgid "Joined networks with their managed addresses"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:63
+msgid "Peers with link type and latency"
+msgstr ""
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:81
+msgid "First release of ZTDeck."
+msgstr ""
+
+#: src/client.py:38 src/window.py:207
+msgid "Something went wrong"
+msgstr ""
+
+#: src/client.py:43
+msgid "Authentication token not found"
+msgstr ""
+
+#: src/client.py:45
+msgid ""
+"ZTDeck needs a readable copy of the ZeroTier service token before it can "
+"talk to the daemon."
+msgstr ""
+
+#: src/client.py:51
+msgid "ZeroTier service is not running"
+msgstr ""
+
+#: src/client.py:53
+msgid ""
+"Nothing is listening on the local ZeroTier control port. Start the service "
+"with: sudo systemctl enable --now zerotier-one"
+msgstr ""
+
+#: src/client.py:59
+msgid "Authentication token was rejected"
+msgstr ""
+
+#: src/client.py:61
+msgid ""
+"The token ZTDeck found is no longer valid. Copy the current token again, "
+"then reload."
+msgstr ""
+
+#: src/client.py:67
+msgid "The ZeroTier service returned an error"
+msgstr ""
+
+#: src/client.py:166
+msgid "The service sent a malformed response"
+msgstr ""
+
+#: src/device.py:22
+msgid "This device"
+msgstr ""
+
+#: src/device.py:24
+msgid ""
+"Give the node address to a network administrator when you need this device "
+"authorized."
+msgstr ""
+
+#: src/device.py:30
+msgid "Node address"
+msgstr ""
+
+#: src/device.py:34
+msgid "Copy node address"
+msgstr ""
+
+#: src/device.py:40 src/window.py:325
+msgid "Node address copied"
+msgstr ""
+
+#: src/device.py:45
+msgid "Status"
+msgstr ""
+
+#: src/device.py:48
+msgid "Version"
+msgstr ""
+
+#: src/device.py:52
+msgid "Connection"
+msgstr ""
+
+#: src/device.py:55
+msgid "Transport"
+msgstr ""
+
+#: src/device.py:60
+msgid "Root servers"
+msgstr ""
+
+#: src/device.py:61 src/device.py:97 src/device.py:112 src/device.py:128
+#: src/device.py:132 src/networks.py:144 src/networks.py:145 src/util.py:56
+#: src/util.py:67
+msgid "Unknown"
+msgstr ""
+
+#: src/device.py:68
+msgid "Identity"
+msgstr ""
+
+#: src/device.py:70
+msgid ""
+"The public identity is safe to share. The matching secret key never leaves "
+"the ZeroTier service."
+msgstr ""
+
+#: src/device.py:75
+msgid "Public identity"
+msgstr ""
+
+#: src/device.py:80
+msgid "Copy public identity"
+msgstr ""
+
+#: src/device.py:86
+msgid "Public identity copied"
+msgstr ""
+
+#: src/device.py:101 src/window.py:283
+msgid "Online"
+msgstr ""
+
+#: src/device.py:101 src/window.py:283
+msgid "Offline"
+msgstr ""
+
+#. Translators: %(version)s is like "1.14.2", %(build)s a build number.
+#: src/device.py:107
+#, python-format
+msgid "%(version)s (build %(build)s)"
+msgstr ""
+
+#: src/device.py:119
+msgid "TCP relay (slow fallback)"
+msgstr ""
+
+#: src/device.py:119
+msgid "UDP (direct)"
+msgstr ""
+
+#. Translators: %s is the numeric ID of the ZeroTier root server set.
+#: src/device.py:128
+#, python-format
+msgid "World %s"
+msgstr ""
+
+#: src/main.py:60
+msgid ""
+"An unofficial desktop client for the ZeroTier One service.\n"
+"\n"
+"ZTDeck talks to the ZeroTier daemon already running on this machine through "
+"its local control API. It is not affiliated with or endorsed by ZeroTier, "
+"Inc."
+msgstr ""
+
+#. Translators: credit yourself here; it shows in the About dialog.
+#: src/main.py:67
+msgid "translator-credits"
+msgstr ""
+
+#: src/networks.py:26
+msgid "Allow managed addresses"
+msgstr ""
+
+#: src/networks.py:27
+msgid "Let the controller assign IP addresses on this interface."
+msgstr ""
+
+#: src/networks.py:31
+msgid "Allow global routes"
+msgstr ""
+
+#: src/networks.py:32
+msgid "Permit routes to public IP space."
+msgstr ""
+
+#: src/networks.py:36
+msgid "Allow default route"
+msgstr ""
+
+#: src/networks.py:37
+msgid "Let this network carry all internet traffic."
+msgstr ""
+
+#: src/networks.py:41
+msgid "Allow DNS configuration"
+msgstr ""
+
+#: src/networks.py:42
+msgid "Apply DNS servers published by the controller."
+msgstr ""
+
+#: src/networks.py:71 src/networks.py:164
+msgid "Managed IP"
+msgstr ""
+
+#: src/networks.py:76 src/networks.py:171
+msgid "Copy address"
+msgstr ""
+
+#: src/networks.py:87
+msgid "Routes"
+msgstr ""
+
+#: src/networks.py:92
+msgid "DNS"
+msgstr ""
+
+#: src/networks.py:98
+msgid "Type"
+msgstr ""
+
+#: src/networks.py:99
+msgid "Interface"
+msgstr ""
+
+#: src/networks.py:100
+msgid "MAC address"
+msgstr ""
+
+#: src/networks.py:101
+msgid "MTU"
+msgstr ""
+
+#: src/networks.py:115
+msgid "Leave this network"
+msgstr ""
+
+#: src/networks.py:116
+msgid "Disconnects and removes the virtual interface."
+msgstr ""
+
+#: src/networks.py:118 src/window.py:353
+msgid "Leave"
+msgstr ""
+
+#: src/networks.py:129
+msgid "Unnamed network"
+msgstr ""
+
+#: src/networks.py:143
+msgid "Not created"
+msgstr ""
+
+#: src/networks.py:164
+msgid "Managed IPs"
+msgstr ""
+
+#: src/networks.py:167
+msgid "Not assigned yet"
+msgstr ""
+
+#: src/networks.py:171
+msgid "Copy addresses"
+msgstr ""
+
+#: src/networks.py:180
+msgid "None"
+msgstr ""
+
+#. A controller that publishes no DNS is the common case, so say so
+#. rather than leaving the row blank.
+#: src/networks.py:190
+msgid "Not configured"
+msgstr ""
+
+#: src/networks.py:197
+msgid "Addresses copied"
+msgstr ""
+
+#: src/networks.py:197
+msgid "Address copied"
+msgstr ""
+
+#: src/networks.py:221
+msgid "No networks joined"
+msgstr ""
+
+#: src/networks.py:223
+msgid ""
+"Join a network with its 16-digit network ID. The network administrator still "
+"has to authorize this device before traffic flows."
+msgstr ""
+
+#: src/networks.py:278 src/window.py:50
+msgid "Join a network"
+msgstr ""
+
+#: src/networks.py:280
+msgid ""
+"Enter the 16-digit network ID. The network administrator has to authorize "
+"this device before it can reach other members."
+msgstr ""
+
+#: src/networks.py:286
+msgid "Network ID"
+msgstr ""
+
+#: src/networks.py:294 src/window.py:352
+msgid "Cancel"
+msgstr ""
+
+#: src/networks.py:295
+msgid "Join"
+msgstr ""
+
+#: src/notifications.py:79
+#, python-format
+msgid "Connected to %s"
+msgstr ""
+
+#: src/notifications.py:80
+msgid "The network is ready to carry traffic."
+msgstr ""
+
+#: src/notifications.py:85
+#, python-format
+msgid "Disconnected from %s"
+msgstr ""
+
+#: src/notifications.py:86
+msgid "The network stopped responding as expected."
+msgstr ""
+
+#: src/notifications.py:91
+#, python-format
+msgid "Access denied on %s"
+msgstr ""
+
+#: src/notifications.py:92
+msgid "This device has not been authorized by the controller."
+msgstr ""
+
+#: src/peers.py:16 src/peers.py:23
+msgid "Peer"
+msgstr ""
+
+#: src/peers.py:17
+msgid "Root server"
+msgstr ""
+
+#: src/peers.py:18
+msgid "Moon"
+msgstr ""
+
+#: src/peers.py:19
+msgid "Upstream"
+msgstr ""
+
+#: src/peers.py:39
+msgid "Direct"
+msgstr ""
+
+#: src/peers.py:39
+msgid "Relayed"
+msgstr ""
+
+#. Translators: %s is a version number, e.g. "1.14.2".
+#: src/peers.py:44 src/window.py:286
+#, python-format
+msgid "v%s"
+msgstr ""
+
+#: src/peers.py:91
+msgid "No peers yet"
+msgstr ""
+
+#: src/peers.py:93
+msgid ""
+"Once this node exchanges traffic with other members they appear here with "
+"their connection quality."
+msgstr ""
+
+#: src/setup_view.py:40
+msgid "Run this in a terminal"
+msgstr ""
+
+#: src/setup_view.py:42
+msgid ""
+"This is the procedure documented in the zerotier-cli manual page. Anyone who "
+"can read the token can join or leave networks on this machine, so keep the "
+"copy private."
+msgstr ""
+
+#: src/setup_view.py:51
+msgid "Or paste the token directly"
+msgstr ""
+
+#: src/setup_view.py:53
+msgid ""
+"ZTDeck stores it in its own configuration directory with owner-only "
+"permissions."
+msgstr ""
+
+#: src/setup_view.py:57
+msgid "Service token"
+msgstr ""
+
+#: src/setup_view.py:73
+msgid "Grant access to ZeroTier"
+msgstr ""
+
+#: src/setup_view.py:79
+msgid ""
+"The ZeroTier service protects its control API with a token that only the "
+"root user can read. Give your user account a copy once, and ZTDeck will pick "
+"it up automatically."
+msgstr ""
+
+#: src/setup_view.py:98
+msgid "Copy the service token"
+msgstr ""
+
+#: src/setup_view.py:109
+msgid "Copy command to clipboard"
+msgstr ""
+
+#: src/setup_view.py:118
+msgid "Save token"
+msgstr ""
+
+#: src/setup_view.py:123
+msgid "Check again"
+msgstr ""
+
+#: src/setup_view.py:140
+msgid "Command copied to clipboard"
+msgstr ""
+
+#: src/setup_view.py:145
+msgid "Enter the token first"
+msgstr ""
+
+#: src/setup_view.py:150
+#, python-format
+msgid "Could not save the token: %s"
+msgstr ""
+
+#: src/setup_view.py:159
+msgid "Still no readable token found"
+msgstr ""
+
+#: src/util.py:36 src/util.py:38 src/window.py:279
+msgid "unknown"
+msgstr ""
+
+#. Translators: %d is a round-trip time in milliseconds.
+#: src/util.py:40
+#, python-format
+msgid "%d ms"
+msgstr ""
+
+#: src/util.py:46
+msgid "Connected"
+msgstr ""
+
+#: src/util.py:47
+msgid "Requesting configuration"
+msgstr ""
+
+#: src/util.py:48
+msgid "Access denied"
+msgstr ""
+
+#: src/util.py:49
+msgid "Network not found"
+msgstr ""
+
+#: src/util.py:50
+msgid "Port error"
+msgstr ""
+
+#: src/util.py:51
+msgid "Client too old"
+msgstr ""
+
+#: src/util.py:52
+msgid "Authentication required"
+msgstr ""
+
+#: src/util.py:62
+msgid "Public"
+msgstr ""
+
+#: src/util.py:63
+msgid "Private"
+msgstr ""
+
+#. Translators: a route reached through a gateway, as in
+#. "10.0.0.0/24 via 10.0.0.1".
+#: src/util.py:93
+#, python-format
+msgid "%(target)s via %(via)s"
+msgstr ""
+
+#: src/util.py:114
+#, python-format
+msgid "Search domain: %s"
+msgstr ""
+
+#: src/window.py:55
+msgid "Main menu"
+msgstr ""
+
+#: src/window.py:65
+msgid ""
+"Traffic is being relayed over TCP, which is slower than a direct UDP "
+"connection."
+msgstr ""
+
+#: src/window.py:86
+msgid "Copy this node's address"
+msgstr ""
+
+#: src/window.py:89
+msgid "Not connected"
+msgstr ""
+
+#: src/window.py:110
+msgid "Networks"
+msgstr ""
+
+#: src/window.py:113
+msgid "Peers"
+msgstr ""
+
+#: src/window.py:116
+msgid "Device"
+msgstr ""
+
+#: src/window.py:147
+msgid "Setup required"
+msgstr ""
+
+#: src/window.py:165
+msgid "Try again"
+msgstr ""
+
+#: src/window.py:173
+msgid "Disconnected"
+msgstr ""
+
+#: src/window.py:183
+msgid "Refresh"
+msgstr ""
+
+#: src/window.py:186
+msgid "About ZTDeck"
+msgstr ""
+
+#: src/window.py:187
+msgid "Quit"
+msgstr ""
+
+#: src/window.py:203
+msgid "Token accepted"
+msgstr ""
+
+#: src/window.py:294
+#, python-format
+msgid "%(state)s · v%(version)s — click to copy %(address)s"
+msgstr ""
+
+#: src/window.py:300
+#, python-format
+msgid "%(state)s — click to copy %(address)s"
+msgstr ""
+
+#: src/window.py:314
+msgid "Refreshed"
+msgstr ""
+
+#: src/window.py:339
+#, python-format
+msgid "Joined %s"
+msgstr ""
+
+#: src/window.py:345
+msgid "Leave this network?"
+msgstr ""
+
+#: src/window.py:347
+#, python-format
+msgid ""
+"ZTDeck will disconnect from %s and remove its virtual interface. You can "
+"join again at any time."
+msgstr ""
+
+#: src/window.py:369
+#, python-format
+msgid "Left %s"
+msgstr ""

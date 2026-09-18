@@ -4,6 +4,8 @@ import threading
 
 from gi.repository import GLib
 
+from .i18n import _
+
 
 def run_async(worker, on_done=None):
     """Run ``worker()`` off the main loop and deliver its result on the main loop.
@@ -31,23 +33,38 @@ def format_latency(value):
     try:
         value = int(value)
     except (TypeError, ValueError):
-        return "unknown"
+        return _("unknown")
     if value < 0:
-        return "unknown"
-    return f"{value} ms"
+        return _("unknown")
+    # Translators: %d is a round-trip time in milliseconds.
+    return _("%d ms") % value
 
 
 def format_network_status(status):
     """Map ZeroTier network status codes to human wording."""
-    return {
-        "OK": "Connected",
-        "REQUESTING_CONFIGURATION": "Requesting configuration",
-        "ACCESS_DENIED": "Access denied",
-        "NOT_FOUND": "Network not found",
-        "PORT_ERROR": "Port error",
-        "CLIENT_TOO_OLD": "Client too old",
-        "AUTHENTICATION_REQUIRED": "Authentication required",
-    }.get(status, (status or "Unknown").replace("_", " ").capitalize())
+    known = {
+        "OK": _("Connected"),
+        "REQUESTING_CONFIGURATION": _("Requesting configuration"),
+        "ACCESS_DENIED": _("Access denied"),
+        "NOT_FOUND": _("Network not found"),
+        "PORT_ERROR": _("Port error"),
+        "CLIENT_TOO_OLD": _("Client too old"),
+        "AUTHENTICATION_REQUIRED": _("Authentication required"),
+    }
+    if status in known:
+        return known[status]
+    return (status or _("Unknown")).replace("_", " ").capitalize()
+
+
+def format_network_type(value):
+    """Public/private network type, humanised."""
+    known = {
+        "PUBLIC": _("Public"),
+        "PRIVATE": _("Private"),
+    }
+    if value in known:
+        return known[value]
+    return (value or _("Unknown")).replace("_", " ").title()
 
 
 def is_valid_network_id(text):
@@ -56,3 +73,45 @@ def is_valid_network_id(text):
     if len(text) != 16:
         return False
     return all(char in "0123456789abcdef" for char in text)
+
+
+def format_routes(routes):
+    """Render a network's routing table, one route per line.
+
+    ZeroTier route entries look like ``{"target": "10.0.0.0/24", "via": null}``.
+    A route without a ``via`` is reached directly over the virtual interface.
+    """
+    lines = []
+    for route in routes or []:
+        target = route.get("target")
+        if not target:
+            continue
+        via = route.get("via")
+        if via:
+            # Translators: a route reached through a gateway, as in
+            # "10.0.0.0/24 via 10.0.0.1".
+            lines.append(_("%(target)s via %(via)s") % {"target": target, "via": via})
+        else:
+            lines.append(target)
+    return "\n".join(lines)
+
+
+def format_dns(dns):
+    """Render the DNS configuration a controller pushed, if any.
+
+    The daemon reports ``{"domain": "...", "servers": [...]}``; either half can
+    be absent or empty.
+    """
+    if not dns:
+        return ""
+    servers = [server for server in (dns.get("servers") or []) if server]
+    domain = (dns.get("domain") or "").strip()
+    if not servers and not domain:
+        return ""
+
+    parts = []
+    if domain:
+        parts.append(_("Search domain: %s") % domain)
+    if servers:
+        parts.extend(servers)
+    return "\n".join(parts)

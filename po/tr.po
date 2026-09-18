@@ -1,0 +1,699 @@
+# Turkish translation for ZTDeck.
+# Copyright (C) 2026 Yiğit Adak
+# This file is distributed under the same license as the ztdeck package.
+# Yiğit Adak <ygtadk100@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ztdeck 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/ygtadk/ztdeck/issues\n"
+"POT-Creation-Date: 2026-09-17 17:38+0300\n"
+"PO-Revision-Date: 2026-09-17 17:45+0300\n"
+"Last-Translator: Yiğit Adak <ygtadk100@gmail.com>\n"
+"Language-Team: Turkish\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/io.github.ygtadk.ZTDeck.desktop.in.in:2
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:5
+msgid "ZTDeck"
+msgstr "ZTDeck"
+
+#: data/io.github.ygtadk.ZTDeck.desktop.in.in:3
+msgid "ZeroTier Client"
+msgstr "ZeroTier İstemcisi"
+
+#: data/io.github.ygtadk.ZTDeck.desktop.in.in:4
+msgid "Manage ZeroTier networks on this machine"
+msgstr "Bu makinedeki ZeroTier ağlarını yönetin"
+
+#: data/io.github.ygtadk.ZTDeck.desktop.in.in:10
+msgid "ZeroTier;VPN;Network;Mesh;Overlay;SDN;"
+msgstr "ZeroTier;VPN;Ağ;Mesh;Örgü;Kaplama;SDN;"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:6
+msgid "Manage ZeroTier networks"
+msgstr "ZeroTier ağlarını yönetin"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:12
+msgid ""
+"ZTDeck is a small desktop client for the ZeroTier One service running on "
+"your machine. It talks to the local ZeroTier control API, so the daemon "
+"keeps doing the networking while ZTDeck gives you a clear view of it."
+msgstr "ZTDeck, makinenizde çalışan ZeroTier One hizmeti için küçük bir masaüstü istemcisidir. Yerel ZeroTier denetim API'siyle konuşur; böylece ağ işini arka plan hizmeti yapmayı sürdürürken ZTDeck size net bir görünüm sunar."
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:17
+msgid "Features:"
+msgstr "Özellikler:"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:19
+msgid "See your node address, version and online state at a glance"
+msgstr "Düğüm adresinizi, sürümü ve çevrim içi durumu bir bakışta görün"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:20
+msgid "Join and leave networks, with network ID validation"
+msgstr "Ağ kimliği doğrulamasıyla ağlara katılın ve ayrılın"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:21
+msgid "Copy managed IP addresses to the clipboard"
+msgstr "Yönetilen IP adreslerini panoya kopyalayın"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:22
+msgid "Inspect the routes and DNS settings a controller publishes"
+msgstr "Denetleyicinin yayımladığı rotaları ve DNS ayarlarını inceleyin"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:23
+msgid ""
+"Toggle managed addresses, global routes, default route and DNS per network"
+msgstr "Ağ başına yönetilen adresleri, genel rotaları, varsayılan rotayı ve DNS'i açıp kapatın"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:24
+msgid "Inspect peers with their link type and latency"
+msgstr "Eşleri bağlantı türü ve gecikmesiyle inceleyin"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:25
+msgid "Get notified when a network connects or stops responding"
+msgstr "Bir ağ bağlandığında veya yanıt vermeyi bıraktığında bildirim alın"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:26
+msgid "See when traffic falls back to slow TCP relaying"
+msgstr "Trafiğin yavaş TCP aktarmaya düştüğünü görün"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:28
+msgid ""
+"ZTDeck does not bundle the ZeroTier service. Install and start zerotier-one "
+"on the host first, then grant your user account read access to the service "
+"token as described in the setup screen."
+msgstr "ZTDeck, ZeroTier hizmetini içermez. Önce ana makinede zerotier-one kurup başlatın, ardından kurulum ekranında anlatıldığı gibi kullanıcı hesabınıza hizmet belirteci için okuma erişimi verin."
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:33
+msgid ""
+"This is an unofficial client. It is not affiliated with, endorsed by, or "
+"sponsored by ZeroTier, Inc."
+msgstr "Bu, resmî olmayan bir istemcidir. ZeroTier, Inc. ile bağlantılı değildir, onun tarafından onaylanmamış veya desteklenmemektedir."
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:47
+msgid "Yiğit Adak"
+msgstr "Yiğit Adak"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:59
+msgid "Joined networks with their managed addresses"
+msgstr "Katılınan ağlar ve yönetilen adresleri"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:63
+msgid "Peers with link type and latency"
+msgstr "Bağlantı türü ve gecikmesiyle eşler"
+
+#: data/io.github.ygtadk.ZTDeck.metainfo.xml.in.in:81
+msgid "First release of ZTDeck."
+msgstr "ZTDeck'in ilk sürümü."
+
+#: src/client.py:38 src/window.py:207
+msgid "Something went wrong"
+msgstr "Bir şeyler ters gitti"
+
+#: src/client.py:43
+msgid "Authentication token not found"
+msgstr "Kimlik doğrulama belirteci bulunamadı"
+
+#: src/client.py:45
+msgid ""
+"ZTDeck needs a readable copy of the ZeroTier service token before it can "
+"talk to the daemon."
+msgstr "ZTDeck'in arka plan hizmetiyle konuşabilmesi için ZeroTier hizmet belirtecinin okunabilir bir kopyasına ihtiyacı var."
+
+#: src/client.py:51
+msgid "ZeroTier service is not running"
+msgstr "ZeroTier hizmeti çalışmıyor"
+
+#: src/client.py:53
+msgid ""
+"Nothing is listening on the local ZeroTier control port. Start the service "
+"with: sudo systemctl enable --now zerotier-one"
+msgstr "Yerel ZeroTier denetim bağlantı noktasını dinleyen bir şey yok. Hizmeti şu komutla başlatın: sudo systemctl enable --now zerotier-one"
+
+#: src/client.py:59
+msgid "Authentication token was rejected"
+msgstr "Kimlik doğrulama belirteci reddedildi"
+
+#: src/client.py:61
+msgid ""
+"The token ZTDeck found is no longer valid. Copy the current token again, "
+"then reload."
+msgstr "ZTDeck'in bulduğu belirteç artık geçerli değil. Güncel belirteci yeniden kopyalayıp yeniden yükleyin."
+
+#: src/client.py:67
+msgid "The ZeroTier service returned an error"
+msgstr "ZeroTier hizmeti bir hata döndürdü"
+
+#: src/client.py:166
+msgid "The service sent a malformed response"
+msgstr "Hizmet bozuk bir yanıt gönderdi"
+
+#: src/device.py:22
+msgid "This device"
+msgstr "Bu cihaz"
+
+#: src/device.py:24
+msgid ""
+"Give the node address to a network administrator when you need this device "
+"authorized."
+msgstr "Bu cihazın yetkilendirilmesi gerektiğinde düğüm adresini bir ağ yöneticisine verin."
+
+#: src/device.py:30
+msgid "Node address"
+msgstr "Düğüm adresi"
+
+#: src/device.py:34
+msgid "Copy node address"
+msgstr "Düğüm adresini kopyala"
+
+#: src/device.py:40 src/window.py:325
+msgid "Node address copied"
+msgstr "Düğüm adresi kopyalandı"
+
+#: src/device.py:45
+msgid "Status"
+msgstr "Durum"
+
+#: src/device.py:48
+msgid "Version"
+msgstr "Sürüm"
+
+#: src/device.py:52
+msgid "Connection"
+msgstr "Bağlantı"
+
+#: src/device.py:55
+msgid "Transport"
+msgstr "Taşıma"
+
+#: src/device.py:60
+msgid "Root servers"
+msgstr "Kök sunucular"
+
+#: src/device.py:61 src/device.py:97 src/device.py:112 src/device.py:128
+#: src/device.py:132 src/networks.py:144 src/networks.py:145 src/util.py:56
+#: src/util.py:67
+msgid "Unknown"
+msgstr "Bilinmiyor"
+
+#: src/device.py:68
+msgid "Identity"
+msgstr "Kimlik"
+
+#: src/device.py:70
+msgid ""
+"The public identity is safe to share. The matching secret key never leaves "
+"the ZeroTier service."
+msgstr "Herkese açık kimliği paylaşmak güvenlidir. Eşleşen gizli anahtar ZeroTier hizmetinden asla çıkmaz."
+
+#: src/device.py:75
+msgid "Public identity"
+msgstr "Herkese açık kimlik"
+
+#: src/device.py:80
+msgid "Copy public identity"
+msgstr "Herkese açık kimliği kopyala"
+
+#: src/device.py:86
+msgid "Public identity copied"
+msgstr "Herkese açık kimlik kopyalandı"
+
+#: src/device.py:101 src/window.py:283
+msgid "Online"
+msgstr "Çevrim içi"
+
+#: src/device.py:101 src/window.py:283
+msgid "Offline"
+msgstr "Çevrim dışı"
+
+#. Translators: %(version)s is like "1.14.2", %(build)s a build number.
+#: src/device.py:107
+#, python-format
+msgid "%(version)s (build %(build)s)"
+msgstr "%(version)s (yapı %(build)s)"
+
+#: src/device.py:119
+msgid "TCP relay (slow fallback)"
+msgstr "TCP aktarma (yavaş yedek)"
+
+#: src/device.py:119
+msgid "UDP (direct)"
+msgstr "UDP (doğrudan)"
+
+#. Translators: %s is the numeric ID of the ZeroTier root server set.
+#: src/device.py:128
+#, python-format
+msgid "World %s"
+msgstr "Dünya %s"
+
+#: src/main.py:60
+msgid ""
+"An unofficial desktop client for the ZeroTier One service.\n"
+"\n"
+"ZTDeck talks to the ZeroTier daemon already running on this machine through "
+"its local control API. It is not affiliated with or endorsed by ZeroTier, "
+"Inc."
+msgstr "ZeroTier One hizmeti için resmî olmayan bir masaüstü istemcisi.\n\nZTDeck, bu makinede zaten çalışan ZeroTier arka plan hizmetiyle yerel denetim API'si üzerinden konuşur. ZeroTier, Inc. ile bağlantılı değildir ve onun tarafından onaylanmamıştır."
+
+#. Translators: credit yourself here; it shows in the About dialog.
+#: src/main.py:67
+msgid "translator-credits"
+msgstr "Yiğit Adak"
+
+#: src/networks.py:26
+msgid "Allow managed addresses"
+msgstr "Yönetilen adreslere izin ver"
+
+#: src/networks.py:27
+msgid "Let the controller assign IP addresses on this interface."
+msgstr "Denetleyicinin bu arabirimde IP adresi atamasına izin verin."
+
+#: src/networks.py:31
+msgid "Allow global routes"
+msgstr "Genel rotalara izin ver"
+
+#: src/networks.py:32
+msgid "Permit routes to public IP space."
+msgstr "Herkese açık IP alanına rotalara izin verin."
+
+#: src/networks.py:36
+msgid "Allow default route"
+msgstr "Varsayılan rotaya izin ver"
+
+#: src/networks.py:37
+msgid "Let this network carry all internet traffic."
+msgstr "Bu ağın tüm internet trafiğini taşımasına izin verin."
+
+#: src/networks.py:41
+msgid "Allow DNS configuration"
+msgstr "DNS yapılandırmasına izin ver"
+
+#: src/networks.py:42
+msgid "Apply DNS servers published by the controller."
+msgstr "Denetleyicinin yayımladığı DNS sunucularını uygulayın."
+
+#: src/networks.py:71 src/networks.py:164
+msgid "Managed IP"
+msgstr "Yönetilen IP"
+
+#: src/networks.py:76 src/networks.py:171
+msgid "Copy address"
+msgstr "Adresi kopyala"
+
+#: src/networks.py:87
+msgid "Routes"
+msgstr "Rotalar"
+
+#: src/networks.py:92
+msgid "DNS"
+msgstr "DNS"
+
+#: src/networks.py:98
+msgid "Type"
+msgstr "Tür"
+
+#: src/networks.py:99
+msgid "Interface"
+msgstr "Arabirim"
+
+#: src/networks.py:100
+msgid "MAC address"
+msgstr "MAC adresi"
+
+#: src/networks.py:101
+msgid "MTU"
+msgstr "MTU"
+
+#: src/networks.py:115
+msgid "Leave this network"
+msgstr "Bu ağdan ayrıl"
+
+#: src/networks.py:116
+msgid "Disconnects and removes the virtual interface."
+msgstr "Bağlantıyı keser ve sanal arabirimi kaldırır."
+
+#: src/networks.py:118 src/window.py:353
+msgid "Leave"
+msgstr "Ayrıl"
+
+#: src/networks.py:129
+msgid "Unnamed network"
+msgstr "Adsız ağ"
+
+#: src/networks.py:143
+msgid "Not created"
+msgstr "Oluşturulmadı"
+
+#: src/networks.py:164
+msgid "Managed IPs"
+msgstr "Yönetilen IP'ler"
+
+#: src/networks.py:167
+msgid "Not assigned yet"
+msgstr "Henüz atanmadı"
+
+#: src/networks.py:171
+msgid "Copy addresses"
+msgstr "Adresleri kopyala"
+
+#: src/networks.py:180
+msgid "None"
+msgstr "Yok"
+
+#. A controller that publishes no DNS is the common case, so say so
+#. rather than leaving the row blank.
+#: src/networks.py:190
+msgid "Not configured"
+msgstr "Yapılandırılmadı"
+
+#: src/networks.py:197
+msgid "Addresses copied"
+msgstr "Adresler kopyalandı"
+
+#: src/networks.py:197
+msgid "Address copied"
+msgstr "Adres kopyalandı"
+
+#: src/networks.py:221
+msgid "No networks joined"
+msgstr "Hiçbir ağa katılınmadı"
+
+#: src/networks.py:223
+msgid ""
+"Join a network with its 16-digit network ID. The network administrator still "
+"has to authorize this device before traffic flows."
+msgstr "16 haneli ağ kimliğiyle bir ağa katılın. Trafiğin akması için ağ yöneticisinin yine de bu cihazı yetkilendirmesi gerekir."
+
+#: src/networks.py:278 src/window.py:50
+msgid "Join a network"
+msgstr "Bir ağa katıl"
+
+#: src/networks.py:280
+msgid ""
+"Enter the 16-digit network ID. The network administrator has to authorize "
+"this device before it can reach other members."
+msgstr "16 haneli ağ kimliğini girin. Diğer üyelere ulaşabilmesi için ağ yöneticisinin bu cihazı yetkilendirmesi gerekir."
+
+#: src/networks.py:286
+msgid "Network ID"
+msgstr "Ağ kimliği"
+
+#: src/networks.py:294 src/window.py:352
+msgid "Cancel"
+msgstr "İptal"
+
+#: src/networks.py:295
+msgid "Join"
+msgstr "Katıl"
+
+#: src/notifications.py:79
+#, python-format
+msgid "Connected to %s"
+msgstr "%s ağına bağlanıldı"
+
+#: src/notifications.py:80
+msgid "The network is ready to carry traffic."
+msgstr "Ağ trafik taşımaya hazır."
+
+#: src/notifications.py:85
+#, python-format
+msgid "Disconnected from %s"
+msgstr "%s ağıyla bağlantı kesildi"
+
+#: src/notifications.py:86
+msgid "The network stopped responding as expected."
+msgstr "Ağ beklendiği gibi yanıt vermeyi bıraktı."
+
+#: src/notifications.py:91
+#, python-format
+msgid "Access denied on %s"
+msgstr "%s ağında erişim reddedildi"
+
+#: src/notifications.py:92
+msgid "This device has not been authorized by the controller."
+msgstr "Bu cihaz denetleyici tarafından yetkilendirilmedi."
+
+#: src/peers.py:16 src/peers.py:23
+msgid "Peer"
+msgstr "Eş"
+
+#: src/peers.py:17
+msgid "Root server"
+msgstr "Kök sunucu"
+
+#: src/peers.py:18
+msgid "Moon"
+msgstr "Moon"
+
+#: src/peers.py:19
+msgid "Upstream"
+msgstr "Üst akış"
+
+#: src/peers.py:39
+msgid "Direct"
+msgstr "Doğrudan"
+
+#: src/peers.py:39
+msgid "Relayed"
+msgstr "Aktarmalı"
+
+#. Translators: %s is a version number, e.g. "1.14.2".
+#: src/peers.py:44 src/window.py:286
+#, python-format
+msgid "v%s"
+msgstr "s%s"
+
+#: src/peers.py:91
+msgid "No peers yet"
+msgstr "Henüz eş yok"
+
+#: src/peers.py:93
+msgid ""
+"Once this node exchanges traffic with other members they appear here with "
+"their connection quality."
+msgstr "Bu düğüm diğer üyelerle trafik alışverişi yaptığında, bağlantı kaliteleriyle birlikte burada görünürler."
+
+#: src/setup_view.py:40
+msgid "Run this in a terminal"
+msgstr "Bunu bir uçbirimde çalıştırın"
+
+#: src/setup_view.py:42
+msgid ""
+"This is the procedure documented in the zerotier-cli manual page. Anyone who "
+"can read the token can join or leave networks on this machine, so keep the "
+"copy private."
+msgstr "Bu, zerotier-cli kılavuz sayfasında belgelenen yordamdır. Belirteci okuyabilen herkes bu makinede ağlara katılabilir veya ağlardan ayrılabilir; bu yüzden kopyayı gizli tutun."
+
+#: src/setup_view.py:51
+msgid "Or paste the token directly"
+msgstr "Ya da belirteci doğrudan yapıştırın"
+
+#: src/setup_view.py:53
+msgid ""
+"ZTDeck stores it in its own configuration directory with owner-only "
+"permissions."
+msgstr "ZTDeck bunu yalnızca sahibinin erişebileceği izinlerle kendi yapılandırma dizininde saklar."
+
+#: src/setup_view.py:57
+msgid "Service token"
+msgstr "Hizmet belirteci"
+
+#: src/setup_view.py:73
+msgid "Grant access to ZeroTier"
+msgstr "ZeroTier'a erişim verin"
+
+#: src/setup_view.py:79
+msgid ""
+"The ZeroTier service protects its control API with a token that only the "
+"root user can read. Give your user account a copy once, and ZTDeck will pick "
+"it up automatically."
+msgstr "ZeroTier hizmeti, denetim API'sini yalnızca root kullanıcısının okuyabileceği bir belirteçle korur. Kullanıcı hesabınıza bir kez kopyasını verin; ZTDeck bunu otomatik olarak algılar."
+
+#: src/setup_view.py:98
+msgid "Copy the service token"
+msgstr "Hizmet belirtecini kopyala"
+
+#: src/setup_view.py:109
+msgid "Copy command to clipboard"
+msgstr "Komutu panoya kopyala"
+
+#: src/setup_view.py:118
+msgid "Save token"
+msgstr "Belirteci kaydet"
+
+#: src/setup_view.py:123
+msgid "Check again"
+msgstr "Yeniden denetle"
+
+#: src/setup_view.py:140
+msgid "Command copied to clipboard"
+msgstr "Komut panoya kopyalandı"
+
+#: src/setup_view.py:145
+msgid "Enter the token first"
+msgstr "Önce belirteci girin"
+
+#: src/setup_view.py:150
+#, python-format
+msgid "Could not save the token: %s"
+msgstr "Belirteç kaydedilemedi: %s"
+
+#: src/setup_view.py:159
+msgid "Still no readable token found"
+msgstr "Hâlâ okunabilir bir belirteç bulunamadı"
+
+#: src/util.py:36 src/util.py:38 src/window.py:279
+msgid "unknown"
+msgstr "bilinmiyor"
+
+#. Translators: %d is a round-trip time in milliseconds.
+#: src/util.py:40
+#, python-format
+msgid "%d ms"
+msgstr "%d ms"
+
+#: src/util.py:46
+msgid "Connected"
+msgstr "Bağlandı"
+
+#: src/util.py:47
+msgid "Requesting configuration"
+msgstr "Yapılandırma isteniyor"
+
+#: src/util.py:48
+msgid "Access denied"
+msgstr "Erişim reddedildi"
+
+#: src/util.py:49
+msgid "Network not found"
+msgstr "Ağ bulunamadı"
+
+#: src/util.py:50
+msgid "Port error"
+msgstr "Bağlantı noktası hatası"
+
+#: src/util.py:51
+msgid "Client too old"
+msgstr "İstemci çok eski"
+
+#: src/util.py:52
+msgid "Authentication required"
+msgstr "Kimlik doğrulama gerekli"
+
+#: src/util.py:62
+msgid "Public"
+msgstr "Herkese açık"
+
+#: src/util.py:63
+msgid "Private"
+msgstr "Özel"
+
+#. Translators: a route reached through a gateway, as in
+#. "10.0.0.0/24 via 10.0.0.1".
+#: src/util.py:93
+#, python-format
+msgid "%(target)s via %(via)s"
+msgstr "%(target)s, %(via)s üzerinden"
+
+#: src/util.py:114
+#, python-format
+msgid "Search domain: %s"
+msgstr "Arama etki alanı: %s"
+
+#: src/window.py:55
+msgid "Main menu"
+msgstr "Ana menü"
+
+#: src/window.py:65
+msgid ""
+"Traffic is being relayed over TCP, which is slower than a direct UDP "
+"connection."
+msgstr "Trafik TCP üzerinden aktarılıyor; bu, doğrudan UDP bağlantısından daha yavaştır."
+
+#: src/window.py:86
+msgid "Copy this node's address"
+msgstr "Bu düğümün adresini kopyala"
+
+#: src/window.py:89
+msgid "Not connected"
+msgstr "Bağlı değil"
+
+#: src/window.py:110
+msgid "Networks"
+msgstr "Ağlar"
+
+#: src/window.py:113
+msgid "Peers"
+msgstr "Eşler"
+
+#: src/window.py:116
+msgid "Device"
+msgstr "Cihaz"
+
+#: src/window.py:147
+msgid "Setup required"
+msgstr "Kurulum gerekli"
+
+#: src/window.py:165
+msgid "Try again"
+msgstr "Yeniden dene"
+
+#: src/window.py:173
+msgid "Disconnected"
+msgstr "Bağlantı kesildi"
+
+#: src/window.py:183
+msgid "Refresh"
+msgstr "Yenile"
+
+#: src/window.py:186
+msgid "About ZTDeck"
+msgstr "ZTDeck Hakkında"
+
+#: src/window.py:187
+msgid "Quit"
+msgstr "Çık"
+
+#: src/window.py:203
+msgid "Token accepted"
+msgstr "Belirteç kabul edildi"
+
+#: src/window.py:294
+#, python-format
+msgid "%(state)s · v%(version)s — click to copy %(address)s"
+msgstr "%(state)s · s%(version)s — %(address)s adresini kopyalamak için tıklayın"
+
+#: src/window.py:300
+#, python-format
+msgid "%(state)s — click to copy %(address)s"
+msgstr "%(state)s — %(address)s adresini kopyalamak için tıklayın"
+
+#: src/window.py:314
+msgid "Refreshed"
+msgstr "Yenilendi"
+
+#: src/window.py:339
+#, python-format
+msgid "Joined %s"
+msgstr "%s ağına katılındı"
+
+#: src/window.py:345
+msgid "Leave this network?"
+msgstr "Bu ağdan ayrılınsın mı?"
+
+#: src/window.py:347
+#, python-format
+msgid ""
+"ZTDeck will disconnect from %s and remove its virtual interface. You can "
+"join again at any time."
+msgstr "ZTDeck, %s ağıyla bağlantısını kesecek ve sanal arabirimini kaldıracak. İstediğiniz zaman yeniden katılabilirsiniz."
+
+#: src/window.py:369
+#, python-format
+msgid "Left %s"
+msgstr "%s ağından ayrılındı"

@@ -3,6 +3,7 @@
 from gi.repository import Adw, Gdk, GObject, Gtk
 
 from . import client
+from .i18n import _
 
 COPY_COMMAND = (
     "sudo cp /var/lib/zerotier-one/authtoken.secret "
@@ -36,8 +37,8 @@ class SetupView(Adw.Bin):
         page.add(intro)
 
         command_group = Adw.PreferencesGroup(
-            title="Run this in a terminal",
-            description=(
+            title=_("Run this in a terminal"),
+            description=_(
                 "This is the procedure documented in the zerotier-cli manual "
                 "page. Anyone who can read the token can join or leave "
                 "networks on this machine, so keep the copy private."
@@ -47,13 +48,13 @@ class SetupView(Adw.Bin):
         page.add(command_group)
 
         manual_group = Adw.PreferencesGroup(
-            title="Or paste the token directly",
-            description=(
+            title=_("Or paste the token directly"),
+            description=_(
                 "ZTDeck stores it in its own configuration directory with "
                 "owner-only permissions."
             ),
         )
-        self._entry = Adw.PasswordEntryRow(title="Service token")
+        self._entry = Adw.PasswordEntryRow(title=_("Service token"))
         self._entry.connect("entry-activated", lambda *_: self._save_token())
         manual_group.add(self._entry)
         manual_group.add(self._build_buttons())
@@ -69,12 +70,12 @@ class SetupView(Adw.Bin):
         icon.add_css_class("dim-label")
         icon.set_margin_top(12)
 
-        title = Gtk.Label(label="Grant access to ZeroTier", wrap=True)
+        title = Gtk.Label(label=_("Grant access to ZeroTier"), wrap=True)
         title.add_css_class("title-1")
         title.set_margin_top(12)
 
         description = Gtk.Label(
-            label=(
+            label=_(
                 "The ZeroTier service protects its control API with a token "
                 "that only the root user can read. Give your user account a "
                 "copy once, and ZTDeck will pick it up automatically."
@@ -94,7 +95,7 @@ class SetupView(Adw.Bin):
         return box
 
     def _build_command_row(self):
-        row = Adw.ActionRow(title="Copy the service token")
+        row = Adw.ActionRow(title=_("Copy the service token"))
         # The command contains '&&', which Pango would otherwise parse as
         # markup, so markup has to be disabled before the subtitle is set.
         row.set_use_markup(False)
@@ -105,7 +106,7 @@ class SetupView(Adw.Bin):
 
         copy_button = Gtk.Button(
             icon_name="edit-copy-symbolic",
-            tooltip_text="Copy command to clipboard",
+            tooltip_text=_("Copy command to clipboard"),
             valign=Gtk.Align.CENTER,
         )
         copy_button.add_css_class("flat")
@@ -114,12 +115,12 @@ class SetupView(Adw.Bin):
         return row
 
     def _build_buttons(self):
-        save_button = Gtk.Button(label="Save token")
+        save_button = Gtk.Button(label=_("Save token"))
         save_button.add_css_class("suggested-action")
         save_button.add_css_class("pill")
         save_button.connect("clicked", lambda *_: self._save_token())
 
-        retry_button = Gtk.Button(label="Check again")
+        retry_button = Gtk.Button(label=_("Check again"))
         retry_button.add_css_class("pill")
         retry_button.connect("clicked", lambda *_: self._check_again())
 
@@ -136,17 +137,17 @@ class SetupView(Adw.Bin):
 
     def _on_copy_clicked(self, _button):
         Gdk.Display.get_default().get_clipboard().set(COPY_COMMAND)
-        self._toast("Command copied to clipboard")
+        self._toast(_("Command copied to clipboard"))
 
     def _save_token(self):
         token = self._entry.get_text().strip()
         if not token:
-            self._toast("Enter the token first")
+            self._toast(_("Enter the token first"))
             return
         try:
             client.store_token(token)
         except (OSError, ValueError) as exc:
-            self._toast(f"Could not save the token: {exc}")
+            self._toast(_("Could not save the token: %s") % exc)
             return
         self._entry.set_text("")
         self.emit("token-ready")
@@ -155,4 +156,4 @@ class SetupView(Adw.Bin):
         if client.read_token():
             self.emit("token-ready")
         else:
-            self._toast("Still no readable token found")
+            self._toast(_("Still no readable token found"))

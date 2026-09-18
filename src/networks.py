@@ -8,30 +8,40 @@ place. Only networks that appear or disappear cause structural changes.
 
 from gi.repository import Adw, GObject, Gtk
 
-from .util import format_network_status, is_valid_network_id
-
-TOGGLES = (
-    (
-        "allowManaged",
-        "Allow managed addresses",
-        "Let the controller assign IP addresses on this interface.",
-    ),
-    (
-        "allowGlobal",
-        "Allow global routes",
-        "Permit routes to public IP space.",
-    ),
-    (
-        "allowDefault",
-        "Allow default route",
-        "Let this network carry all internet traffic.",
-    ),
-    (
-        "allowDNS",
-        "Allow DNS configuration",
-        "Apply DNS servers published by the controller.",
-    ),
+from .i18n import _
+from .util import (
+    format_dns,
+    format_network_status,
+    format_network_type,
+    format_routes,
+    is_valid_network_id,
 )
+
+
+def _toggles():
+    """The per-network client settings, built lazily so _() is bound first."""
+    return (
+        (
+            "allowManaged",
+            _("Allow managed addresses"),
+            _("Let the controller assign IP addresses on this interface."),
+        ),
+        (
+            "allowGlobal",
+            _("Allow global routes"),
+            _("Permit routes to public IP space."),
+        ),
+        (
+            "allowDefault",
+            _("Allow default route"),
+            _("Let this network carry all internet traffic."),
+        ),
+        (
+            "allowDNS",
+            _("Allow DNS configuration"),
+            _("Apply DNS servers published by the controller."),
+        ),
+    )
 
 
 class NetworkRow(Adw.ExpanderRow):
@@ -54,17 +64,16 @@ class NetworkRow(Adw.ExpanderRow):
         self._badge.add_css_class("caption")
         self.add_suffix(self._badge)
 
-        # A single, permanently ordered row: Adw.ExpanderRow.add_row() appends,
-        # so rows must be created once, in their final order, and only have
-        # their contents refreshed afterwards.
+        # Adw.ExpanderRow.add_row() appends, so every row is created once here,
+        # in its final order, and afterwards only has its contents refreshed.
         self._addresses = []
         self._address_row = Adw.ActionRow(
-            title="Managed IP", css_classes=["property"]
+            title=_("Managed IP"), css_classes=["property"]
         )
         self._address_row.set_subtitle_lines(4)
         self._copy_button = Gtk.Button(
             icon_name="edit-copy-symbolic",
-            tooltip_text="Copy address",
+            tooltip_text=_("Copy address"),
             valign=Gtk.Align.CENTER,
         )
         self._copy_button.add_css_class("flat")
@@ -72,29 +81,41 @@ class NetworkRow(Adw.ExpanderRow):
         self._address_row.add_suffix(self._copy_button)
         self.add_row(self._address_row)
 
+        # Routes and DNS are what people actually check when a network works
+        # but traffic does not reach where they expect.
+        self._routes = None
+        self._routes_row = Adw.ActionRow(title=_("Routes"), css_classes=["property"])
+        self._routes_row.set_subtitle_lines(6)
+        self.add_row(self._routes_row)
+
+        self._dns = None
+        self._dns_row = Adw.ActionRow(title=_("DNS"), css_classes=["property"])
+        self._dns_row.set_subtitle_lines(4)
+        self.add_row(self._dns_row)
+
         self._detail_rows = {}
         for key, title in (
-            ("type", "Type"),
-            ("portDeviceName", "Interface"),
-            ("mac", "MAC address"),
-            ("mtu", "MTU"),
+            ("type", _("Type")),
+            ("portDeviceName", _("Interface")),
+            ("mac", _("MAC address")),
+            ("mtu", _("MTU")),
         ):
             row = Adw.ActionRow(title=title, css_classes=["property"])
             self._detail_rows[key] = row
             self.add_row(row)
 
         self._switch_rows = {}
-        for key, title, subtitle in TOGGLES:
+        for key, title, subtitle in _toggles():
             switch_row = Adw.SwitchRow(title=title, subtitle=subtitle)
             switch_row.connect("notify::active", self._on_toggle, key)
             self._switch_rows[key] = switch_row
             self.add_row(switch_row)
 
         leave_row = Adw.ActionRow(
-            title="Leave this network",
-            subtitle="Disconnects and removes the virtual interface.",
+            title=_("Leave this network"),
+            subtitle=_("Disconnects and removes the virtual interface."),
         )
-        leave_button = Gtk.Button(label="Leave", valign=Gtk.Align.CENTER)
+        leave_button = Gtk.Button(label=_("Leave"), valign=Gtk.Align.CENTER)
         leave_button.add_css_class("destructive-action")
         leave_button.connect(
             "clicked", lambda _b: self.emit("leave-requested", self.network_id)
@@ -105,7 +126,7 @@ class NetworkRow(Adw.ExpanderRow):
     def update(self, network):
         self._applying_remote_state = True
         try:
-            self.set_title(network.get("name") or "Unnamed network")
+            self.set_title(network.get("name") or _("Unnamed network"))
 
             status = network.get("status", "")
             self._badge.set_label(format_network_status(status))
@@ -114,13 +135,14 @@ class NetworkRow(Adw.ExpanderRow):
             self._badge.add_css_class("success" if status == "OK" else "warning")
 
             self._update_addresses(network.get("assignedAddresses") or [])
+            self._update_routes(network.get("routes") or [])
+            self._update_dns(network.get("dns") or {})
 
             values = {
-                "type": (network.get("type") or "").replace("_", " ").title()
-                or "Unknown",
-                "portDeviceName": network.get("portDeviceName") or "Not created",
-                "mac": network.get("mac") or "Unknown",
-                "mtu": str(network.get("mtu") or "Unknown"),
+                "type": format_network_type(network.get("type")),
+                "portDeviceName": network.get("portDeviceName") or _("Not created"),
+                "mac": network.get("mac") or _("Unknown"),
+                "mtu": str(network.get("mtu") or _("Unknown")),
             }
             for key, row in self._detail_rows.items():
                 if row.get_subtitle() != values[key]:
@@ -139,22 +161,40 @@ class NetworkRow(Adw.ExpanderRow):
         self._addresses = list(addresses)
 
         self._address_row.set_title(
-            "Managed IPs" if len(addresses) > 1 else "Managed IP"
+            _("Managed IPs") if len(addresses) > 1 else _("Managed IP")
         )
         self._address_row.set_subtitle(
-            "\n".join(addresses) if addresses else "Not assigned yet"
+            "\n".join(addresses) if addresses else _("Not assigned yet")
         )
         self._copy_button.set_visible(bool(addresses))
         self._copy_button.set_tooltip_text(
-            "Copy addresses" if len(addresses) > 1 else "Copy address"
+            _("Copy addresses") if len(addresses) > 1 else _("Copy address")
         )
+
+    def _update_routes(self, routes):
+        if routes == self._routes:
+            return
+        self._routes = list(routes)
+
+        text = format_routes(routes)
+        self._routes_row.set_subtitle(text or _("None"))
+
+    def _update_dns(self, dns):
+        if dns == self._dns:
+            return
+        self._dns = dict(dns)
+
+        text = format_dns(dns)
+        # A controller that publishes no DNS is the common case, so say so
+        # rather than leaving the row blank.
+        self._dns_row.set_subtitle(text or _("Not configured"))
 
     def _on_copy_clicked(self, _button):
         if not self._addresses:
             return
         # Strip the prefix length: what people paste elsewhere is the bare IP.
         bare = [address.split("/")[0] for address in self._addresses]
-        message = "Addresses copied" if len(bare) > 1 else "Address copied"
+        message = _("Addresses copied") if len(bare) > 1 else _("Address copied")
         self.emit("copy-requested", "\n".join(bare), message)
 
     def _on_toggle(self, switch_row, _param, key):
@@ -178,8 +218,8 @@ class NetworksPage(Adw.Bin):
 
         self._empty = Adw.StatusPage(
             icon_name="network-workgroup-symbolic",
-            title="No networks joined",
-            description=(
+            title=_("No networks joined"),
+            description=_(
                 "Join a network with its 16-digit network ID. The network "
                 "administrator still has to authorize this device before "
                 "traffic flows."
@@ -235,15 +275,15 @@ class JoinDialog(Adw.AlertDialog):
 
     def __init__(self, on_join):
         super().__init__(
-            heading="Join a network",
-            body=(
+            heading=_("Join a network"),
+            body=_(
                 "Enter the 16-digit network ID. The network administrator has "
                 "to authorize this device before it can reach other members."
             ),
         )
         self._on_join = on_join
 
-        self._entry = Adw.EntryRow(title="Network ID")
+        self._entry = Adw.EntryRow(title=_("Network ID"))
         self._entry.connect("changed", self._on_changed)
         self._entry.connect("entry-activated", self._on_activated)
 
@@ -251,8 +291,8 @@ class JoinDialog(Adw.AlertDialog):
         group.add(self._entry)
         self.set_extra_child(group)
 
-        self.add_response("cancel", "Cancel")
-        self.add_response("join", "Join")
+        self.add_response("cancel", _("Cancel"))
+        self.add_response("join", _("Join"))
         self.set_response_appearance("join", Adw.ResponseAppearance.SUGGESTED)
         self.set_response_enabled("join", False)
         self.set_default_response("join")
